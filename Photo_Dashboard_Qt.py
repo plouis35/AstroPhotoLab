@@ -187,7 +187,7 @@ class LabeledSlider(QWidget):
 class PhotoDashboardQt(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("AstroPhotoLab — version 0.2 QT5")
+        self.setWindowTitle("AstroPhotoLab_QT")
         self.resize(1400, 860)
         self._apply_dark_theme()
 

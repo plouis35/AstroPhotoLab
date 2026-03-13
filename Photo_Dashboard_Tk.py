@@ -28,11 +28,11 @@ from Photo_Lab import PhotoLab
 # ─────────────────────────────────────────────────────────────────────────────
 # ÉCHELLE — ajustez cette valeur selon votre écran
 #   1.0 = taille normale (PC/Mac)
-#   1.8 = tablette Android (recommandé Redmi Pad)
+#   1.8 = tablette Android 
 #   2.0 = très grande tablette ou affichage HiDPI
 # ─────────────────────────────────────────────────────────────────────────────
 
-SCALE = 1.8
+SCALE = 1.2
 
 # Tailles dérivées
 FONT_SM   = ('TkDefaultFont', round(9  * SCALE))
@@ -142,7 +142,7 @@ class AstroToolbar(NavigationToolbar2Tk):
 class PhotoDashboardTk(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Photo Lab — Astronomical Image Processing")
+        self.title("AstroPhotoLab_TK")
         self.geometry("1400x860")
         self.configure(bg=BG)
 
