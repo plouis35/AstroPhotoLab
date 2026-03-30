@@ -1,6 +1,5 @@
 """
-Photo_Lab.py
-Module de traitement d'images astronomiques - module de traitement
+Application de retouche photo astronomique :  module de traitements
 
 v3 :
   1. MTF (Midtone Transfer Function) remplace AsinhStretch.
@@ -23,7 +22,7 @@ v2 :
   - load_files() invalide self.masks = {} après un nouveau stack.
   - Normalisation FITS via BITPIX.
   - Imports nettoyés.
-  - parallélisation du chargement et de l'alignement (max_thread)
+  - parallélisation du chargement et de l'alignement (max_workers=4)
 
 v1 :
   - conversion du notebook vers Qt6
@@ -151,7 +150,7 @@ class PhotoLab:
             limit = 65535.0 if np.max(raw) > 255 else 255.0
             return raw / limit
 
-    def load_files(self, file_paths, max_workers=1):
+    def load_files(self, file_paths, max_workers=4):
         """Charge, calibre, aligne et stacke une liste de fichiers."""
         if not file_paths:
             return
@@ -172,7 +171,7 @@ class PhotoLab:
         if not file_paths:
             return
 
-        self.log(f"Loading {len(file_paths)} image(s) in parallel...")
+        self.log(f"Loading {len(file_paths)} image(s)...")
 
         def _load_and_calib(args):
             i, p  = args

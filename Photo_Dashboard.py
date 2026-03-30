@@ -1,7 +1,5 @@
 """
-Photo_Dashboard.py
 Application de retouche photo astronomique : module UI
-Inspiré des modules de SIRI 
 """
 
 import os
