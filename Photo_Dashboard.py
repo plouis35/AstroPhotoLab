@@ -1,6 +1,7 @@
 """
 Photo_Dashboard.py
-Application de retouche photo astronomique.
+Application de retouche photo astronomique : module UI
+Inspiré des modules de SIRI 
 """
 
 import os
@@ -23,7 +24,6 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer
 from PyQt5.QtGui import QColor, QPalette, QFont
 
 from Photo_Lab import PhotoLab
-
 
 class Worker(QThread):
     finished = pyqtSignal(object)

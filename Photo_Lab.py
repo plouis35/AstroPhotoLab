@@ -1,8 +1,8 @@
 """
-Photo_Lab_TT.py
-Module de traitement d'images astronomiques.
+Photo_Lab.py
+Module de traitement d'images astronomiques - module de traitement
 
-v3 — trois améliorations :
+v3 :
   1. MTF (Midtone Transfer Function) remplace AsinhStretch.
      Préserve mieux les hautes lumières (noyaux galactiques, étoiles brillantes).
      Paramètre m ∈ ]0,1[ : petit = stretch fort, grand = stretch doux.
@@ -14,15 +14,19 @@ v3 — trois améliorations :
      Paramètre star_reduce ∈ [0, 1], 0 = désactivé.
 
   3. ABE amélioré (Adaptive Background Extraction).
-     Grille paramétrable (grid_size) au lieu d'une grille fixe 8×8.
+     Grille paramétrable (grid_size) au lieu d'une grille fixe 8x8.
      Mesure de fond par sigma-clipping dans chaque tuile au lieu du seul percentile 10.
      Plus robuste aux nébuleuses qui débordent dans une tuile.
 
-v2 — corrections antérieures :
+v2 :
   - apply_cosmetics() ne recalcule plus les masques automatiquement.
   - load_files() invalide self.masks = {} après un nouveau stack.
   - Normalisation FITS via BITPIX.
   - Imports nettoyés.
+  - parallélisation du chargement et de l'alignement (max_thread)
+
+v1 :
+  - conversion du notebook vers Qt6
 """
 
 import os
@@ -147,7 +151,7 @@ class PhotoLab:
             limit = 65535.0 if np.max(raw) > 255 else 255.0
             return raw / limit
 
-    def load_files(self, file_paths, max_workers=4):
+    def load_files(self, file_paths, max_workers=1):
         """Charge, calibre, aligne et stacke une liste de fichiers."""
         if not file_paths:
             return
